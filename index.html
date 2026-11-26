@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MNHS TVL Equipment Borrowing Portal</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#edf5ef;color:#20352a}
+header{background:#124b34;color:white;text-align:center;padding:22px 12px}
+header h1{margin:0 0 6px}
+main{width:min(1000px,94%);margin:22px auto}
+.panel{background:white;border:1px solid #d7e5da;border-radius:14px;padding:20px;margin:14px 0;box-shadow:0 4px 14px #1234}
+h2{color:#124b34;margin-top:0}
+label{display:block;font-weight:bold;margin:12px 0 6px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #b9cbbf;border-radius:8px;font:inherit}
+textarea{min-height:75px}
+button{border:0;border-radius:8px;padding:11px 15px;margin:5px 5px 5px 0;background:#176b45;color:white;font-weight:bold;cursor:pointer}
+button:hover{opacity:.85}
+button.secondary{background:#e6f0e9;color:#124b34}
+button.danger{background:#b42318}
+.hidden{display:none!important}
+.error{color:#b42318;font-weight:bold;min-height:20px}
+.notice{background:#eaf5ee;padding:10px;border-radius:8px}
+.item{border:1px solid #d7e5da;border-radius:10px;padding:13px;margin:10px 0}
+.item p{white-space:pre-line;line-height:1.5}
+.status{display:inline-block;padding:5px 10px;border-radius:20px;background:#eee;font-size:12px;font-weight:bold}
+.pending{background:#fff0c2;color:#805b00}
+.approved{background:#dcf5e4;color:#176b45}
+.rejected{background:#fde5e4;color:#a12620}
+.returned{background:#e4edff;color:#294f9b}
+.borrowed{background:#e8ddff;color:#59359a}
+.overdue{background:#fde5e4;color:#a12620}
+.notification{border-left:5px solid #176b45;background:#f3f8f4;padding:10px;border-radius:8px;margin:8px 0}
+.notification.warning{border-color:#d18a00}
+.notification.danger{border-color:#b42318}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.stat{background:#eaf5ee;padding:14px;border-radius:10px}
+.stat strong{display:block;font-size:24px;color:#124b34}
+nav{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:15px}
+footer{background:#124b34;color:#fff;text-align:center;padding:28px 16px;margin-top:28px;font-size:14px;line-height:1.6}
+footer .school-name{font-size:20px;font-weight:700;margin:0 0 5px}
+footer .school-address{margin:0 0 14px;color:#e2eee6}
+footer .research-title{max-width:850px;margin:14px auto;font-weight:600}
+footer .research-label{color:#d6c477;font-weight:700;letter-spacing:1px;margin:14px 0 5px}
+footer .researchers{color:#d6c477;font-weight:600;margin:0}
+footer .researchers span{display:inline-block;margin:2px 7px}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>MNHS TVL Equipment Borrowing Portal</h1>
+<p>Minuyan National High School</p>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="panel">
+<h2>Welcome</h2>
+<p>Select account type.</p>
+
+<button onclick="showPage('studentLogin')">Student Sign In</button>
+<button class="secondary" onclick="showPage('adminLogin')">Admin Sign In</button>
+
+<div class="notice" style="margin-top:16px">
+<b>Roles and Responsibilities:</b><br>
+<b>Website Administrator:</b> Manages the website and monitors borrowing requests, approvals, inventory, and records.<br>
+<b>Teacher / Equipment Custodian:</b> Takes care of the actual school equipment, releases approved equipment, and receives returned equipment.<br>
+<b>Student:</b> Submits borrowing requests, collects equipment after approval, and returns equipment on the expected return date.
+</div>
+</section>
+
+<!-- STUDENT LOGIN -->
+<section id="studentLogin" class="panel hidden">
+<h2>Student Sign In</h2>
+
+<label>Full Name</label>
+<input id="studentName" placeholder="Enter your full name">
+
+<label>Password</label>
+<input id="studentPassword" type="password" placeholder="Student password">
+
+<p id="studentLoginError" class="error"></p>
+
+<button onclick="studentLogin()">Sign In</button>
+<button class="secondary" onclick="showPage('home')">Back</button>
+</section>
+
+<!-- ADMIN LOGIN -->
+<section id="adminLogin" class="panel hidden">
+<h2>Admin Sign In</h2>
